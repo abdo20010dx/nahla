@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lover Input</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #fce4ec;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #d81b60;
+            margin-bottom: 10px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 1.5rem;
+            border: 2px solid #d81b60;
+            border-radius: 10px;
+            outline: none;
+            text-align: center;
+        }
+
+        .emoji-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            display: none;
+        }
+
+        @keyframes floatUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(-200px);
+                opacity: 1;
+            }
+        }
+
+        .emoji {
+            position: absolute;
+            animation: floatUp 2s ease-out infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Nahla Lover</h1>
+    <input type="text" id="loverInput" placeholder="Enter name and press Enter">
+
+    <div id="emojiContainer" class="emoji-container"></div>
+
+    <script>
+        document.getElementById('loverInput').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                let inputValue = this.value.toLowerCase();
+                let emojiContainer = document.getElementById('emojiContainer');
+                emojiContainer.innerHTML = ''; // Clear previous emojis
+                
+                if (inputValue === 'abdo' || inputValue === 'abdelrahman' || inputValue === "عبدالرحمن" || inputValue === "عبده") {
+                    let emojis = ['❤️', '💖', '🎁', '🌹', '💞', '💌', '💐', '😍'];
+                    for (let i = 0; i < 30; i++) {
+                        let emoji = document.createElement('span');
+                        emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                        emoji.classList.add('emoji');
+                        emoji.style.left = Math.random() * 100 + 'vw';
+                        emoji.style.top = Math.random() * 100 + 'vh';
+                        emoji.style.animationDelay = Math.random() * 2 + 's';
+                        emojiContainer.appendChild(emoji);
+                    }
+                    emojiContainer.style.display = 'block';
+                } else {
+                    emojiContainer.innerHTML = '<span style="font-size: 5rem;">😡</span><br><span style="font-size: 2rem; color: red;">Wrong Lover</span>';
+                    emojiContainer.style.display = 'block';
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
